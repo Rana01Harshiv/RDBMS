@@ -1,0 +1,11 @@
+1> select * from emp where job in ('CLERK','MANAGER') AND deptno in (10,20);
+2> select * from emp where ename like '_A%';
+3> select * from customer where name like '_%';
+4> select * from ord where commplan is null;
+5> SELECT DEPTNO,ENAME,SUM(SAL + NVL(COMM, 0))AS TotalSalary FROM EMP GROUP BY DEPTNO,ENAME ORDER BY DEPTNO ASC,TotalSalary DESC;
+6> select deptno,job,count(*) as totalemployees from emp group by deptno,job;
+7> select count(*) job,hiredate from emp where job = 'CLERK' group by hiredate;
+8> SELECT M.EMPNO, COUNT(E.EMPNO) AS total_subordinates FROM EMP E JOIN EMP M ON E.MGR = M.EMPNO GROUP BY M.EMPNO;
+9> select deptno,sum(sal+ NVL(comm,0)) as Total_sal from emp where job = 'CLERK' group by deptno order by Total_sal desc;
+10> select * from emp where deptno in (select deptno from dept where dname = 'SALES');
+11> 

@@ -1,0 +1,214 @@
+1. Select the employees in department 30.
+
+select * from employees where department_id=30;
+
+2. List the names, numbers and departments of all clerks
+
+select first_name,phone_number,department_id from employees where job_id like('%K');
+
+3. Find the department numbers and names of employees of all departments with deptno greater
+than 20.
+
+select department_id,first_name from employees where department_id>20 order by department_id;
+
+4. Find employees whose commission is greater than their salaries
+
+select * from employees where (commission_pct*salary)>salary;
+
+5. Find employees whose commission is greater than 60 % of their salaries.
+
+select * from employees where (commission_pct*salary)>(salary*0.6);
+
+6. List name, job and salary of all employees in department 20 who earn more than 2000/-
+
+select first_name,job_id,salary from employees where department_id=20 and salary>2000;
+
+7. Find all salesmen in department 30 whose salary is greater than 1500/
+
+select first_name from employees where department_id=30 and salary>1500;
+
+8. Find all employees whose designation is either manager or president
+
+select * from employees where employee_id in ( select unique manager_id from employees);
+
+9. Find all managers who are not in department 30.
+
+select * from employees where employee_id in ( select unique manager_id from employees) and department_id !=30;
+
+10. Find all the details of managers and clerks in dept 10.
+
+
+select * from employees where (employee_id in ( select unique manager_id from employees) or job_id like('%K')) and department_id=10;
+
+11. Find the details of all the managers (in any dept) and clerks in dept 20
+
+select * from employees where employee_id in ( select unique manager_id from employees) or ( job_id like('%K') and department_id=20);
+
+12. Find the details of all the managers in dept. 10 and all clerks in dept 20 and all employees who
+are neither managers nor clerks but whose salary is more than or equal to 2000/-.
+
+select * from employees where ((employee_id in ( select unique manager_id from employees) and department_id=10) or ( job_id like('%K') and department_id=20)) or  ((employee_id in ( select unique manager_id from employees) or job_id like('%K') ) and salary >= 2000);
+
+13. Find the names of anyone in dept. 20 who is neither manager nor clerk.
+
+
+select first_name from employees where (employee_id in ( select unique manager_id from employees) or job_id like('%K') ) and department_id=20;
+
+14. Find the names of employees who earn between 1200/- and 1400/-.
+
+
+select * from employees where salary between 1200 and 1400;
+
+15. Find the employees who are clerks, analysts or salesmen.
+
+
+select * from employees where job_id like('%K') or job_id like('%REP') or job_id like('IT%');
+
+16. Find the employees who are not clerks, analysts or salesmen.
+
+
+select * from employees where job_id not like('%K') and job_id not like('%REP') and job_id not like('IT%');
+
+17. Find the employees who do not receive commission.
+
+select * from employees where commission_pct is null;
+
+18. Find the different jobs of employees receiving commission.
+
+select job_id from employees where commission_pct is not null;
+
+19. Find the employees who do not receive commission or whose commission is less than 100/-.
+
+select * from employees where commission_pct is null or (commission_pct*salary)<100;
+
+20. If all the employees not receiving commission is entitles to a bonus of Rs. 250/- show the net
+earnings of all the employees.
+
+select first_name,salary + (nvl2(commission_pct,(commission_pct*salary),(+250))) Net_Earning from employees;
+
+21. Find all the employees whose total earning is greater than 2000/- .
+
+select * from employees where (nvl(commission_pct,0)*salary)+salary >2000;
+
+22. Find all the employees whose name begins or ends with M
+
+select * from employees where first_name like('M%') or first_name like('%m');
+
+23. Find all the employees whose names contain the letter  M in any case
+
+select * from employees where first_name like('%M%')or first_name like'%m%'
+
+24. Find all the employees whose names are upto 15 character long and have letter  R as 3rd
+character of their names.
+
+select * from employees where length(first_name)<=15 and first_name like('__r%');
+
+
+25. Find all the employees who were hired in the month of February (of any year).
+
+select * from employees where to_char(hire_date,'mon')='feb';
+
+26. Find all the employees who were hired on last day of the month.
+
+select * from employees where hire_date=last_day(hire_date);
+
+27. Find all the employees who were hired more than 2 years ago.
+
+select * from employees where hire_date<add_months(sysdate,24);
+
+28. Find the managers hired in the year 2003.
+
+select * from employees where employee_id in ( select unique manager_id from employees) and to_char(hire_date,'YYYY')=2003;
+
+29. Display the names and jobs of all the employees separated by a space.
+
+select first_name||'   '||job_id from employees;
+
+30. Display the names of all the employees right aligning them to 15 characters.
+
+select lpad(first_name,15,'.') from employees;
+
+31. Display the names of all the employees padding them to the right up to 15 characters with *.
+
+select rpad(first_name,15,'*') from employees;
+
+32. Display the names of all the employees without any leading A.
+
+select first_name from employees where first_name not like('A%');
+
+33. Display the names of all the employees without any trailing R.
+
+select first_name from employees where first_name not like('%r');
+
+34. Show the first 3 and last 3 characters of the names of all the employees.
+
+select  substr(first_name,1,3),reverse(substr(reverse(first_name),1,3)) from employees;
+
+35. Display the names of all the employees replacing A with a.
+
+select replace(first_name,'A','a') from employees;
+
+36. Display the names of all the employees and position where the string  AR occurs in the name.
+
+select first_name,instr(first_name,'ar',1) from employees;
+
+37. Show the salary of all the employees , rounding it to the nearst RS.1000/-
+
+select salary,ceil(salary/1000)*1000 from employees;
+
+38. Show the salary of all the employees , ignoring the fraction less than RS.1000/-
+
+select salary,trunc(salary/1000)*1000 from employees;
+
+39. Show the names of all the employees and date on which they completed 3 years of service.
+
+select first_name,add_months(hire_date,36) from employees;
+
+40. For each employee, display the no. of days passed since the employee joined the company.
+
+select round(months_between(sysdate,hire_date)*30.41) No_days_between from employees;
+
+41. For each employee, display the no. of months passed since the employee joined the company.
+
+select round(months_between(sysdate,hire_date)) No_month_between from employees;
+
+42. Display the details of all the employees sorted on the names.
+
+select * from employees order by first_name;
+
+43. Display the names of the employees, based on the tenure with the oldest employee coming first.
+
+select first_name,hire_date from employees order by hire_date;
+
+44. Display the names, jobs and salaries of employees, sorting on the job and salary.
+
+select first_name,job_id,salary from employees order by salary,job_id;
+
+45. Display the names, jobs and salaries of employees, sorting on descending order of job and
+within job sorted on salary.
+
+select first_name,job_id,salary from employees order by job_id desc,salary asc;
+
+46. List the employee names, department names and salary for those employees who have
+completed 1 year of service.
+
+select e1.first_name,d1.department_name,e1.salary from employees e1,departments d1 where d1.department_id=e1.department_id and hire_date<add_months(hire_date,12);
+
+47. List the employee names, department names and salary for those employees who are earning 0
+commission or commission is null. Sort your output in the order of department name.
+
+select e1.first_name,d1.department_name,e1.salary from employees e1,departments d1 where d1.department_id=e1.department_id and commission_pct is null order by department_name;
+
+48. List the employee names, department names and hiredate for those employees who have
+joined in 2003 . Sort your output in the order of joining date.
+
+select e1.first_name,d1.department_name,e1.salary from employees e1,departments d1 where d1.department_id=e1.department_id and to_char(hire_date,'YYYY')=2003 order by hire_date;
+
+49. List all the department names along with the names of employees in them , irrespective of the
+fact whether any employee is there or not.
+
+select e1.first_name,d1.department_name from employees e1,departments d1 where d1.department_id=e1.department_id;
+
+
+
+

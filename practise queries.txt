@@ -1,0 +1,27 @@
+1. select * from emp;
+2. select empno,ename from emp;
+3. select empno,ename,job,sal from emp;
+4. select * from emp where sal>2000;
+5. select * from ord where total > 1000;
+6. select * from customer where state in ('CA');
+	// select * from customer where state = 'CA';
+7. select * from dept where loc = 'NEW YORK';
+8. select * from dept where loc in ('NEW YORK','BOSTON');
+9. select * from dept where loc not in ('NEW YORK','BOSTON');
+10.select * from emp where deptno = 20;
+11.select * from emp where deptno = 10 or deptno = 20;
+	// select * from emp where deptno in (10,20);
+12.select * from emp where deptno in (10,20,30);
+13.select * from emp where comm > (sal * 0.6);
+14.select * from emp where job in ('CLERK');
+	// select * from emp where job = 'CLERK';
+15.select * from emp where job = 'CLERK' and deptno = 20;
+16.select * from emp where job = 'CLERK' and deptno in (10,20);
+17.select * from emp where job in ('CLERK','ANALYST','SALESMAN','MANAGER');
+18.select * from emp where ename like 'A%';
+19.select * from emp where ename not like 'A%';
+20.select * from emp where ename like '_A%';
+21.select * from emp where ename like '%A%';
+22.select * from emp where ename like '%AM%';
+23.select * from emp where comm is NULL;
+24.
