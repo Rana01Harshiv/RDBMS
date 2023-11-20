@@ -24,4 +24,25 @@
 21.select * from emp where ename like '%A%';
 22.select * from emp where ename like '%AM%';
 23.select * from emp where comm is NULL;
-24.
+24.select * from ord where commplan is NULL;
+25.select * from ord where commplan is NOT NULL;
+26.select * from emp where sal between 2000 and 4000;
+	//  select * from emp where sal>=2000 AND sal<=4000;
+27.select empno,ename,job,nvl(sal,0)+nvl(comm,0) as totalsalary from emp;
+	// select empno,ename,job,sal+nvl(comm,0) as totalsalary from emp;
+28.select * from emp where ename like '__%';
+29.select * from emp order by ename asc;
+30.select * from emp order by sal asc ,deptno asc;
+31.select * from emp order by deptno asc, sal desc;
+32.select * from emp order by deptno desc,sal desc;
+33.select * from ord order by total asc;
+34.select * from ord where commplan is NULL order by total desc;
+35.select * from emp where deptno = 10 order by sal;
+36.select distinct(job) from emp;
+37.select distinct(prodid) from item;
+38.select * from customer order by creditlimit desc;
+39.
+40.select empno,ename ,sal+NVL(comm,0) as total from emp order by total desc;
+41.select empno,ename ,sal+NVL(comm,0) as total from emp where job = 'CLERK'order by total desc;
+42.select * from emp order by hiredate desc;
+43.
