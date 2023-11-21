@@ -1,3 +1,4 @@
+// Normal Queries:
 1. select * from emp;
 2. select empno,ename from emp;
 3. select empno,ename,job,sal from emp;
@@ -46,3 +47,23 @@
 41.select empno,ename ,sal+NVL(comm,0) as total from emp where job = 'CLERK'order by total desc;
 42.select * from emp order by hiredate desc;
 43.
+// Group by Queries:
+44.select count(*) as TotalEMP from emp;
+45.select sum(sal) as Totalsum, avg(sal) as AverageSalary from emp;
+46.select max(sal) as HighestSalary,min(sal) as MinimumSalary from emp;
+	// select ename from emp where sal = (select max(sal) from emp) OR sal = (select min(sal) from emp);
+47.select avg(sal) from emp;
+48.select count(*) as Morethan2000 from emp where sal>=2000;
+49.select sum(sal) from emp where deptno = 10;
+50.select count(*) from emp where comm is NULL;
+51.select count(*) from ord where commplan is NULL;
+52.select count(*) from emp where job = 'CLERK';
+53.select sum(sal) from emp where job = 'MANAGER';
+54.select count(job) from emp;
+	// select distinct(job) from emp;
+55.select deptno,sum(SAL) from emp group by deptno;
+56.select deptno,count(*) from emp group by deptno;
+57.select deptno,count(*) from emp where job = 'CLERK' group by deptno;
+58.select deptno,count(job) from emp group by deptno;
+59.select deptno,job,count(*) as NumberofEmployees from emp group by deptno,job;
+60.
