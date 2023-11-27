@@ -1,0 +1,11 @@
+Cursor cursor_name IS Subquery;  	(Declaration Part)
+
+OPEN cursor_name;
+FETCH cursor_name INTO variable_list;
+CLOSE cursor_name;
+
+CURSOR ATTRIBUTES
+	> cursor_name % FOUND
+	> cursor_name % NOTFOUND
+	> cursor_name % ISOPEN
+	> cursor_name % ROWCOUNT
