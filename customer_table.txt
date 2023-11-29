@@ -1,0 +1,85 @@
+
+CREATE TABLE CUSTOMER (
+ CUSTID              NUMBER (6) NOT NULL,
+ NAME                VARCHAR2(45),
+ ADDRESS             VARCHAR2(40),
+ CITY                VARCHAR2(30),
+ STATE               VARCHAR2(2),
+ ZIP                 VARCHAR2(9),
+ AREA                NUMBER (3),
+ PHONE               VARCHAR2(9),
+ REPID               NUMBER (4) NOT NULL,
+ CREDITLIMIT         NUMBER (9,2),
+ COMMENTS            LONG,
+ CONSTRAINT CUSTOMER_PRIMARY_KEY PRIMARY KEY (CUSTID),
+ constraint customer_fr_key foreign key (repid) references emp,
+ CONSTRAINT CUSTID_ZERO CHECK (CUSTID > 0));
+
+
+
+
+INSERT INTO CUSTOMER (ZIP, STATE, REPID, PHONE, NAME, CUSTID, CREDITLIMIT,
+  CITY, AREA, ADDRESS, COMMENTS)
+VALUES ('96711', 'CA', '7844', '598-6609',
+ 'JOCKSPORTS',
+ '100', '5000', 'BELMONT', '415', '345 VIEWRIDGE',
+ 'Very friendly people to work with -- sales rep likes to be called Mike.');
+
+INSERT INTO CUSTOMER (ZIP, STATE, REPID, PHONE, NAME, CUSTID, CREDITLIMIT,
+  CITY, AREA, ADDRESS, COMMENTS)
+VALUES ('94061', 'CA', '7521', '368-1223',
+ 'TKB SPORT SHOP',
+ '101', '10000', 'REDWOOD CITY', '415', '490 BOLI RD.',
+ 'Rep called 5/8 about change in order - contact shipping.');
+
+INSERT INTO CUSTOMER (ZIP, STATE, REPID, PHONE, NAME, CUSTID, CREDITLIMIT,
+  CITY, AREA, ADDRESS, COMMENTS)
+VALUES ('95133', 'CA', '7654', '644-3341',
+ 'VOLLYRITE',
+ '102', '7000', 'BURLINGAME', '415', '9722 HAMILTON',
+ 'Company doing heavy promotion beginning 10/89. Prepare for large orders during
+ winter.');
+
+INSERT INTO CUSTOMER (ZIP, STATE, REPID, PHONE, NAME, CUSTID, CREDITLIMIT,
+  CITY, AREA, ADDRESS, COMMENTS)
+VALUES ('97544', 'CA', '7521', '677-9312',
+ 'JUST TENNIS',
+ '103', '3000', 'BURLINGAME', '415', 'HILLVIEW MALL',
+ 'Contact rep about new line of tennis rackets.');
+
+INSERT INTO CUSTOMER (ZIP, STATE, REPID, PHONE, NAME, CUSTID, CREDITLIMIT,
+  CITY, AREA, ADDRESS, COMMENTS)
+VALUES ('93301', 'CA', '7499', '996-2323',
+ 'EVERY MOUNTAIN',
+ '104', '10000', 'CUPERTINO', '408', '574 SURRY RD.',
+ 'Customer with high market share (23%) due to aggressive advertising.');
+
+INSERT INTO CUSTOMER (ZIP, STATE, REPID, PHONE, NAME, CUSTID, CREDITLIMIT,
+  CITY, AREA, ADDRESS, COMMENTS)
+VALUES ('91003', 'CA', '7844', '376-9966',
+ 'K + T SPORTS',
+ '105', '5000', 'SANTA CLARA', '408', '3476 EL PASEO',
+ 'Tends to order large amounts of merchandise at once. Accounting is considering
+ raising their credit limit. Usually pays on time.');
+
+INSERT INTO CUSTOMER (ZIP, STATE, REPID, PHONE, NAME, CUSTID, CREDITLIMIT,
+  CITY, AREA, ADDRESS, COMMENTS)
+VALUES ('94301', 'CA', '7521', '364-9777',
+ 'SHAPE UP',
+ '106', '6000', 'PALO ALTO', '415', '908 SEQUOIA',
+ 'Support intensive. Orders small amounts (< 800) of merchandise at a time.');
+
+INSERT INTO CUSTOMER (ZIP, STATE, REPID, PHONE, NAME, CUSTID, CREDITLIMIT,
+  CITY, AREA, ADDRESS, COMMENTS)
+VALUES ('93301', 'CA', '7499', '967-4398',
+ 'WOMENS SPORTS',
+ '107', '10000', 'SUNNYVALE', '408', 'VALCO VILLAGE',
+ 'First sporting goods store geared exclusively towards women. Unusual promotion
+al style and very willing to take chances towards new products!');
+
+INSERT INTO CUSTOMER (ZIP, STATE, REPID, PHONE, NAME, CUSTID, CREDITLIMIT,
+  CITY, AREA, ADDRESS, COMMENTS)
+VALUES ('55649', 'MN', '7844', '566-9123',
+ 'NORTH WOODS HEALTH AND FITNESS SUPPLY CENTER',
+ '108', '8000', 'HIBBING', '612', '98 LONE PINE WAY', '');
+
