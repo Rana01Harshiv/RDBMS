@@ -1,0 +1,120 @@
+create table emp1(
+	empno	number(10) not null,
+	ename	varchar2(20),
+	sal	number(10),
+	deptno	number(10),
+	Constraint emp_primarykey primary key (empno),
+	Constraint emp_foreignkey foreign key (deptno) references dept1(deptno));
+
+create table dept1(
+	deptno number(10) not null,
+	dname varchar2(10),
+	loc varchar2(10),
+	constraint dept_priamrykey primary key (deptno));
+
+insert all 
+	into emp1 (empno,ename,sal,deptno) values (10,'a',4000,10),
+	into emp1 (empno,ename,sal,deptno) values (11,'b',9000,20),
+	into emp1 (empno,ename,sal,deptno) values (12,'c',1000,10),
+	into emp1 (empno,ename,sal,deptno) values (13,'d',5000,30);
+
+insert into emp1 values (12,'c',1000,10);
+insert into dept1 values(10,'scoo','ohh');
+insert into dept1 values(20,'tsoo','igg');
+
+insert into dept1 values (40,'gddd','ddd');
+
+insert into dept1 (deptno,dname,loc)
+		values
+		(30,'dsdfd','ytu'),
+		(40,'gddd','ddd');
+
+ select deptno,ename,sum(sal+nvl(comm,0)) as total  from emp group by deptno,ename order by deptno asc , total desc;
+
+select deptno,count(job) from emp group by deptno order by deptno asc; 
+
+select hiredate,count(job) from emp where job = 'CLERK' group by hiredate order by hiredate asc;
+
+select * from emp as e
+	 inner join 
+	 dept as d 
+	 on e.deptno = d.deptno;
+
+select e.*,d.*
+	from emp e
+	inner join 
+	dept d
+	on e.deptno = d.deptno;
+
+select e.empno,e.ename,e.job,d.deptno,d.dname
+	from emp e
+	left join 
+	dept d
+	on e.deptno = d.deptno;
+
+
+group by 
+
+select deptno,empno,sum(sal) as total ,deptno from emp group by deptno,empno order by total asc;
+
+select deptno,empno,sum(sal) as total ,deptno from emp group by deptno,empno having sum(sal) > 2000 order by asc empno desc;
+
+
+select * from emp e 
+	where sal > (select avg(sal) from emp where deptno = e.deptno);
+
+
+
+
+
+
+select * from emp e where sal>(select sal from emp where empno = e.mgr);
+select * from dept where deptno = 
+	(select deptno from emp where ename = 'KING');
+
+
+select * from emp where deptno in (
+select deptno from emp group by deptno having count(*) >=4);
+
+create table dept1
+	(
+	deptno number,
+	dname varchar2(20),
+	loc varchar2(20),
+	constraint dno_primary_key primary key(deptno),
+	constraint dno_check_zero check(deptno>5)
+	);
+
+insert into dept1 values (10,'aaa','india');
+insert into dept1 values (20,'bbb','bangla');
+insert into dept1 values (30,'ccc','pak');
+
+create table emp1
+(
+	empno number,
+	ename varchar2(20) not null,
+	deptno number,
+	constraint eno_primary_key primary key (empno),
+	constraint dno_foreign_key foreign key(deptno) references dept(deptno)
+	on Update cascade,
+	constraint eno_check_gt_100 check(empno>100)
+);
+
+insert into emp1 values(5332,'pppp',10);
+insert into emp1 values(9844,'wwww',20);
+insert into emp1 values(6433,'ggg',30);
+
+insert into emp1 values(5444,'mmm',80);
+insert into dept1 values(80,'ddd','afg');
+
+
+
+
+
+
+
+
+
+
+
+

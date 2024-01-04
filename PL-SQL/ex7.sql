@@ -1,8 +1,9 @@
 -- procedure programm
 -- parameter (in,out,in out)
-create or replace procedure 
-	raise_sal(e in number,amt in number,s out number)
-is
+
+create or replace 
+	procedure raise_sal(e in number,amt in number,s out number)
+	is
 begin
 	update emp set sal = sal +amt 
 	where empno = e;

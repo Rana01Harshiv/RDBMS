@@ -53,7 +53,7 @@
 46.select max(sal) as HighestSalary,min(sal) as MinimumSalary from emp;
 	// select ename from emp where sal = (select max(sal) from emp) OR sal = (select min(sal) from emp);
 47.select avg(sal) from emp;
-48.select count(*) as Morethan2000 from emp where sal>=2000;
+48.select count(*) as Morethan2000 from emp where sal>=2000; 	//select count(*) from emp where sal+nvl(comm,0) >2000;
 49.select sum(sal) from emp where deptno = 10;
 50.select count(*) from emp where comm is NULL;
 51.select count(*) from ord where commplan is NULL;
@@ -65,5 +65,32 @@
 56.select deptno,count(*) from emp group by deptno;
 57.select deptno,count(*) from emp where job = 'CLERK' group by deptno;
 58.select deptno,count(job) from emp group by deptno;
-59.select deptno,job,count(*) as NumberofEmployees from emp group by deptno,job;
-60.
+59.select deptno,job,count(*) as NumberofEmployees from emp group by deptno,job;	//select deptno,count(distinct(job)),count(empno) from emp group by deptno;
+60.select custid,count(ordid) from ord group by custid;
+61.select prodid,sum(itemtot) from item group by prodid;
+62.select prodid,count(qty) from item group by prodid;
+63.select ordid,count(itemid) from item group by ordid;
+64.select * from ord where orderdate like '%87';
+65.select substr(hiredate,7,4),count(empno) from emp group by substr(hiredate,7,4) order by substr(hiredate,7,4);
+66.select substr(hiredate,7,4),count(empno) from emp where job = 'CLERK' group by substr(hiredate,7,4) order by substr(hiredate,7,4);
+67.
+
+	// SUB-QUERY
+85.select * from emp where deptno = (select deptno from dept where dname = 'SALES');
+86.select * from emp where deptno = (select deptno from dept where loc = 'NEW YORK');
+87.select * from emp where deptno = (select deptno from emp where ename = 'KING');
+88.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
