@@ -17,3 +17,4 @@ end;
 /
 
 -- execute hr.hire(1100,'harshiv',80000);
+-- execute hr.fire(1100);
